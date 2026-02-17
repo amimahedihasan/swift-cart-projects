@@ -4,8 +4,7 @@ Welcome to **SwiftCart**, a modern and responsive e-commerce landing page built 
 
 ## 🔗 Project Links
 - **Live Demo:** [https://github.com/amimahedihasan/swift-cart-projects.git]
-- **GitHub Repository:** [https://resilient-mandazi-2a0618.netlify.app/]
-
+- **GitHub Repository:** [https://swif-cart-e-commerce.netlify.app/]
 ## 🚀 Features
 - **Dynamic Category Loading:** Categories are fetched directly from the API.
 - **Category Filtering:** View products based on selected categories.
