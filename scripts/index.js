@@ -52,3 +52,38 @@ const displayAllProducts = allProducts => {
         productsContainer.appendChild(productCardDiv);
     });
 }
+
+// Load Product details
+const loadProductDetails = async productId => {
+  try {
+    const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
+    const data = await res.json();
+    displayProductDetailsModal(data);
+  } catch (error) {
+    console.error('Error fetching product detail: ', error);
+  }
+}
+
+// display product details modal
+const displayProductDetailsModal = singleProduct => {
+  const productDetailsContainer = document.getElementById('productDetailsContainer');
+  productDetailsContainer.innerHTML = `
+      <div class="card bg-base-100 shadow-sm">
+        <figure class='h-96'>
+          <img
+            class='h-full'
+            src=${singleProduct.image}
+            alt=${singleProduct.title} />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">${singleProduct.title.length > 30 ? singleProduct.title.slice(0, 30) + '...' :
+            singleProduct.title
+          }</h2>
+          <p>${singleProduct.description.slice(0, 50)}</p>
+        </div>
+      </div>
+  `;
+  document.getElementById('product_details_modal').showModal();
+}
+
+loadAllProducts();
