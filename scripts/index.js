@@ -1,10 +1,16 @@
+let allProducts = [];
 // Load all poducts
 const loadAllProducts = async () => {
     try {
         const res = await fetch('https://fakestoreapi.com/products');
         const data = await res.json();
-        const allProducts = data;
-        displayAllProducts(allProducts);
+        allProducts = data;
+        // get top 3 rated products
+        const topRatedProducts = allProducts
+            .sort((a, b) => b.rating.rate - a.rating.rate)
+            .slice(0, 3);
+
+        displayAllProducts(topRatedProducts);
     } catch (error) {
         console.error('Error fetching all products: ', error);
     }
@@ -43,7 +49,7 @@ const displayAllProducts = allProducts => {
               <button onclick="loadProductDetails(${product.id})" class="btn btn-soft flex-1">
                 <i class="fa-regular fa-eye"></i> Details
               </button>
-              <button class="btn btn-primary flex-1">
+              <button onclick='storeAddToCart(${product.id})' class="btn btn-primary flex-1">
                 <i class="fa-solid fa-cart-shopping"></i> Add
               </button>
             </div>
@@ -53,6 +59,39 @@ const displayAllProducts = allProducts => {
     });
 }
 
+let cart = []; // Global cart
+const storeAddToCart = productId => {
+
+  // get the product via id
+  const product = allProducts.find(p => p.id === productId);
+
+  // check if the product id already in the cart
+  if (cart.some(product => product.id === productId)) {
+    alert("This product is already added!!");
+    return; // stop execution here
+  }
+
+  const updatedCart = [...cart, product];
+  cart = updatedCart;
+  // console.log(cart.length);
+  updateCart(cart);
+}
+
+// update the cart and show how many item added
+const updateCart = currentCart => {
+  const cartContainer = document.getElementById('cartContainer');
+
+  if (currentCart.length === 0) {
+    return;
+  }
+
+  const cartBadgeDiv = document.createElement('div');
+    cartBadgeDiv.classList.add('badge', 'badge-primary', 'absolute', '-top-2', '-right-5');
+    cartBadgeDiv.innerHTML = `
+      <span>${currentCart.length}</span>
+    `;
+    cartContainer.appendChild(cartBadgeDiv);
+}
 // Load Product details
 const loadProductDetails = async productId => {
   try {
