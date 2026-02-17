@@ -3,8 +3,8 @@
 Welcome to **SwiftCart**, a modern and responsive e-commerce landing page built with Vanilla JavaScript, Tailwind CSS, and DaisyUI. This project fetches dynamic data from the Fake Store API to provide a seamless shopping experience.
 
 ## 🔗 Project Links
-- **Live Demo:** [YOUR_DEPLOY_LINK_HERE]
-- **GitHub Repository:** [YOUR_REPO_LINK_HERE]
+- **Live Demo:** [https://github.com/amimahedihasan/swift-cart-projects.git]
+- **GitHub Repository:** [https://resilient-mandazi-2a0618.netlify.app/]
 
 ## 🚀 Features
 - **Dynamic Category Loading:** Categories are fetched directly from the API.
